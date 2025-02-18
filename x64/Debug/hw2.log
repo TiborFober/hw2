@@ -1,0 +1,33 @@
+﻿  amazon.cpp
+C:\Users\tibor\source\repos\TiborFober\hw2\product.h(62,1): error C2143: syntax error: missing ';' before '}'
+C:\Users\tibor\source\repos\TiborFober\hw2\amazon.cpp(32,15): error C2259: 'DataStore': cannot instantiate abstract class
+C:\Users\tibor\source\repos\TiborFober\hw2\datastore.h(19,7): message : see declaration of 'DataStore'
+C:\Users\tibor\source\repos\TiborFober\hw2\amazon.cpp(32,15): message : due to following members:
+C:\Users\tibor\source\repos\TiborFober\hw2\amazon.cpp(32,15): message : 'void DataStore::addProduct(Product *)': is abstract
+C:\Users\tibor\source\repos\TiborFober\hw2\datastore.h(26,18): message : see declaration of 'DataStore::addProduct'
+C:\Users\tibor\source\repos\TiborFober\hw2\amazon.cpp(32,15): message : 'void DataStore::addUser(User *)': is abstract
+C:\Users\tibor\source\repos\TiborFober\hw2\datastore.h(31,18): message : see declaration of 'DataStore::addUser'
+C:\Users\tibor\source\repos\TiborFober\hw2\amazon.cpp(32,15): message : 'std::vector<Product *,std::allocator<Product *>> DataStore::search(std::vector<std::string,std::allocator<std::string>> &,int)': is abstract
+C:\Users\tibor\source\repos\TiborFober\hw2\datastore.h(38,35): message : see declaration of 'DataStore::search'
+C:\Users\tibor\source\repos\TiborFober\hw2\amazon.cpp(32,15): message : 'void DataStore::dump(std::ostream &)': is abstract
+C:\Users\tibor\source\repos\TiborFober\hw2\datastore.h(43,18): message : see declaration of 'DataStore::dump'
+  db_parser.cpp
+C:\Users\tibor\source\repos\TiborFober\hw2\product.h(62,1): error C2143: syntax error: missing ';' before '}'
+  product.cpp
+C:\Users\tibor\source\repos\TiborFober\hw2\product.h(62,1): error C2143: syntax error: missing ';' before '}'
+  product_parser.cpp
+C:\Users\tibor\source\repos\TiborFober\hw2\product.h(62,1): error C2143: syntax error: missing ';' before '}'
+C:\Users\tibor\source\repos\TiborFober\hw2\product_parser.cpp(4,10): fatal  error C1083: Cannot open include file: 'book.h': No such file or directory
+  user.cpp
+  util.cpp
+C:\Users\tibor\source\repos\TiborFober\hw2\util.cpp(55,1): error C2059: syntax error: '}'
+C:\Users\tibor\source\repos\TiborFober\hw2\util.cpp(55,1): error C2143: syntax error: missing ';' before '}'
+C:\Users\tibor\source\repos\TiborFober\hw2\util.cpp(63,36): error C2143: syntax error: missing ';' before '{'
+C:\Users\tibor\source\repos\TiborFober\hw2\util.cpp(63,36): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\tibor\source\repos\TiborFober\hw2\util.cpp(76,10): error C2039: 'not1': is not a member of 'std'
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\set(23,1): message : see declaration of 'std'
+C:\Users\tibor\source\repos\TiborFober\hw2\util.cpp(76,20): error C2039: 'ptr_fun': is not a member of 'std'
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\set(23,1): message : see declaration of 'std'
+C:\Users\tibor\source\repos\TiborFober\hw2\util.cpp(76,20): error C2065: 'ptr_fun': undeclared identifier
+C:\Users\tibor\source\repos\TiborFober\hw2\util.cpp(76,28): error C2062: type 'int' unexpected
+  Generating Code...

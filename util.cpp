@@ -5,7 +5,7 @@
 #include "util.h"
 
 using namespace std;
-std::string convToLower(std::string src)
+std::string convToLower(string src)
 {
     std::transform(src.begin(), src.end(), src.begin(), ::tolower);
     return src;
@@ -13,10 +13,37 @@ std::string convToLower(std::string src)
 
 /** Complete the code to convert a string containing a rawWord
     to a set of words based on the criteria given in the assignment **/
-std::set<std::string> parseStringToWords(string rawWords)
+set<string> parseStringToWords(string rawWords)
 {
+    set<string> setWords;
 
+    string word;
 
+    for (size_t i = 0; i < rawWords.length(); i++)
+    {
+        char c = tolower(rawWords[i]);
+
+        if (ispunct(c) || isspace(c)) // if punctuation or space, see if want to add word to set
+        {
+            if (word.length() >= 2)
+            {
+                setWords.insert(word);
+            }
+            word.clear();
+        } 
+        else // is a digit or letter
+        {
+            word.push_back(c);
+        }
+        
+    }
+
+    if (word.length() >= 2)
+    {
+        setWords.insert(word);
+    }
+    return setWords;
+}
 
 
 
