@@ -1,3 +1,10 @@
 *.o
 amazon
 hw2_tests/
+
+# Ignore Visual Studio temporary files
+.vs/
+*.VC.opendb
+*.VC.db
+*.suo
+*.user
