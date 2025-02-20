@@ -120,7 +120,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="amazon.cpp" />
+    <ClCompile Include="book.cpp" />
+    <ClCompile Include="clothing.cpp" />
     <ClCompile Include="db_parser.cpp" />
+    <ClCompile Include="movie.cpp" />
     <ClCompile Include="mydatastore.cpp" />
     <ClCompile Include="product.cpp" />
     <ClCompile Include="product_parser.cpp" />
@@ -128,8 +131,11 @@
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="book.h" />
+    <ClInclude Include="clothing.h" />
     <ClInclude Include="datastore.h" />
     <ClInclude Include="db_parser.h" />
+    <ClInclude Include="movie.h" />
     <ClInclude Include="mydatastore.h" />
     <ClInclude Include="product.h" />
     <ClInclude Include="product_parser.h" />

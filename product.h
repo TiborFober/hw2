@@ -47,49 +47,9 @@ protected:
 
 };
 
-class Book : public Product
-{
-public:
-    Book(std::string name, double price, int qty, std::string isbn, std::string author)
-        : Product("book", name, price, qty), isbn_(isbn), author_(author) {}
 
-    virtual std::set<std::string> keywords() const;
-    virtual std::string displayString() const;
-    virtual void dump(std::ostream& os) const;
 
-private:
-    std::string isbn_;
-    std::string author_
-};
 
-class Clothing : public Product
-{
-public:
-    Clothing(std::string name, double price, int qty, std::string size, std::string brand)
-        : Product("clothing", name, price, qty), size_(size), brand_(brand) {}
 
-    virtual std::set<std::string> keywords() const;
-    virtual std::string displayString() const;
-    virtual void dump(std::ostream& os) const;
-
-private:
-    std::string size_;
-    std::string brand_;
-};
-
-class Movie : public Product
-{
-public:
-    Movie(std::string name, double price, int qty, std::string genre, std::string rating)
-        : Product("movie", name, price, qty), genre_(genre), rating_(rating) {}
-
-    virtual std::set<std::string> keywords() const;
-    virtual std::string displayString() const;
-    virtual void dump(std::ostream& os) const;
-
-private:
-    std::string genre_;
-    std::string rating_;
-};
 
 #endif
