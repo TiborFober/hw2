@@ -2,6 +2,8 @@
 #include <sstream>
 #include <cctype>
 #include <algorithm>
+#include <locale>
+#include <functional>
 #include "util.h"
 
 using namespace std;
@@ -48,11 +50,6 @@ set<string> parseStringToWords(string rawWords)
 
 
 
-
-
-
-
-}
 
 /**************************************************
  * COMPLETED - You may use the following functions
