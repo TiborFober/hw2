@@ -1,3 +1,4 @@
+
 #include "mydatastore.h"
 #include "util.h"
 #include <iomanip>
@@ -57,7 +58,7 @@ vector<Product*> MyDataStore::search(vector<string>& terms, int type)
 
 
 			}
-			else if(type == 1) // OR (union)
+			else if (type == 1) // OR (union)
 			{
 				result = setUnion(result, productSet);
 			}
@@ -101,13 +102,13 @@ void MyDataStore::dump(ostream& ofile)
 
 void MyDataStore::addToCart(std::string username, Product* p)
 {
-	if (users_.find(username) == users_.end())  
+	if (users_.find(username) == users_.end())
 	{
 		cout << "Invalid username" << endl;
 		return;
 	}
 
-	if (!p) 
+	if (!p)
 	{
 		cout << "Invalid request" << endl;
 		return;
@@ -123,7 +124,7 @@ void MyDataStore::viewCart(std::string username)
 		cout << "Invalid username" << endl;
 		return;
 	}
-	
+
 	if (shoppingCart_.find(username) == shoppingCart_.end() || shoppingCart_[username].empty())
 	{
 		cout << "Cart is empty" << endl;
@@ -166,9 +167,9 @@ void MyDataStore::buyCart(std::string username)
 	while (!tempCart.empty())
 	{
 		Product* prod = tempCart.front();
-		tempCart.pop(); 
+		tempCart.pop();
 
-		if (prod->getQty() > 0) 
+		if (prod->getQty() > 0)
 		{
 			if (users_[username]->getBalance() >= prod->getPrice())
 			{
@@ -188,3 +189,9 @@ void MyDataStore::buyCart(std::string username)
 
 	shoppingCart_[username] = newCart;
 }
+
+
+
+
+
+

@@ -23,7 +23,7 @@ public:
      * Returns true if an error occurred.
      */
     virtual bool parse(std::istream& is, DataStore& ds,
-                       int& lineno, std::string& errorMsg) = 0;
+        int& lineno, std::string& errorMsg) = 0;
     /**
      * Reports how many items were parsed
      */
@@ -45,7 +45,7 @@ public:
      *  database
      */
     void addSectionParser(const std::string& sectionName,
-                          SectionParser*         parser);
+        SectionParser* parser);
     /**
      *  Registers a section parser that will be invoked
      *  when a section with sectionName is found in the
@@ -73,17 +73,17 @@ public:
     ProductSectionParser();
     ~ProductSectionParser();
     virtual bool parse(std::istream& is, DataStore& ds,
-                       int& lineno, std::string& errorMsg);
+        int& lineno, std::string& errorMsg);
     virtual void reportItemsRead(std::ostream& os);
     void addProductParser(ProductParser* p);
 protected:
     Product* parseProduct(const std::string& category,
-                          std::istream& is,
-                          int& lineno,
-                          std::string& errorMsg);
+        std::istream& is,
+        int& lineno,
+        std::string& errorMsg);
 private:
     std::map<std::string, ProductParser*> prodParsers_;
-    unsigned int numRead_ ;
+    unsigned int numRead_;
 };
 
 /**
@@ -95,7 +95,7 @@ public:
     UserSectionParser();
     ~UserSectionParser() {}
     virtual bool parse(std::istream& is, DataStore& ds,
-                       int& lineno, std::string& errorMsg);
+        int& lineno, std::string& errorMsg);
     virtual void reportItemsRead(std::ostream& os);
 protected:
     User* parseUser(
@@ -104,7 +104,8 @@ protected:
         std::string& errorMsg);
 private:
 
-    unsigned int numRead_ ;
+    unsigned int numRead_;
 
 };
 #endif
+

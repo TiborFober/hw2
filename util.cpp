@@ -21,7 +21,6 @@ set<string> parseStringToWords(string rawWords)
 	set<string> setWords;
 	string word;
 
-	cout << "DEBUG: Parsing string '" << rawWords << "'" << endl;
 
 	for (size_t i = 0; i < rawWords.length(); i++)
 	{
