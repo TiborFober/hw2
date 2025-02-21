@@ -7,18 +7,27 @@ using namespace std;
 
 MyDataStore::~MyDataStore()
 {
-
+	for (std::vector<Product*>::iterator it = products_.begin(); it != products_.end(); ++it) 
+	{
+		if (*it != nullptr) 
+		{
+			delete* it;  
+		}
+	}
+	products_.clear();
 }
 
 void MyDataStore::addProduct(Product* p)
 {
-	products_.push_back(p);
-
-	set<string> keywords = p->keywords();
-
-	for (set<string>::iterator it = keywords.begin(); it != keywords.end(); ++it)
+	if (p != nullptr) 
 	{
-		keywordMap[*it].insert(p);
+		products_.push_back(p); 
+
+		std::set<std::string> keySet = p->keywords();
+		for (std::set<std::string>::iterator it = keySet.begin(); it != keySet.end(); ++it) 
+		{
+			keywordMap_[*it].insert(p);
+		}
 	}
 }
 
@@ -39,9 +48,9 @@ vector<Product*> MyDataStore::search(vector<string>& terms, int type)
 
 	for (vector<string>::iterator itTerms = terms.begin(); itTerms != terms.end(); ++itTerms)
 	{
-		map<string, set<Product*>>::iterator itMap = keywordMap.find(*itTerms);
+		map<string, set<Product*>>::iterator itMap = keywordMap_.find(*itTerms);
 
-		if (itMap != keywordMap.end())
+		if (itMap != keywordMap_.end())
 		{
 			set<Product*> productSet = itMap->second;
 

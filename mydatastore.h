@@ -23,7 +23,7 @@ public:
 private:
 	std::vector<Product*> products_;
 	std::map<std::string, User*> users_;
-	std::map<std::string, std::set<Product*>> keywordMap;
+	std::map<std::string, std::set<Product*>> keywordMap_;
 	std::map<std::string, std::queue<Product*>> shoppingCart_;
 };
 
