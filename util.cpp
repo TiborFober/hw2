@@ -40,10 +40,10 @@ set<string> parseStringToWords(string rawWords)
         
     }
 
-    if (word.length() >= 2)
+	if (!word.empty() && word.length() >= 2) 
     {
-        setWords.insert(word);
-    }
+		setWords.insert(word);
+	}
     return setWords;
 }
 

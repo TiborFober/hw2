@@ -109,7 +109,7 @@ int main(int argc, char* argv[])
                 {
 					hitIndex--;
 
-					if (hitIndex < 0 || hitIndex > static_cast<int>(hits.size()))
+                    if (hitIndex < 0 || hitIndex >= static_cast<int>(hits.size()))
 					{
 						cout << "Invalid request" << endl;
 					}
@@ -154,6 +154,9 @@ int main(int argc, char* argv[])
         }
 
     }
+
+	delete productSectionParser;
+	delete userSectionParser;
     return 0;
 }
 

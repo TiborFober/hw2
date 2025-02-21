@@ -109,16 +109,15 @@ void MyDataStore::addToCart(std::string username, Product* p)
 
 void MyDataStore::viewCart(std::string username)
 {
-	if (users_.find(username) == users_.end())
+	if (shoppingCart_.find(username) == shoppingCart_.end()) 
 	{
-		cout << "Invalid username" << endl;
+		cout << "Username not found" << endl;
 		return;
 	}
-
-	if (shoppingCart_.find(username) == shoppingCart_.end() || shoppingCart_[username].empty())
+	if (shoppingCart_[username].empty()) 
 	{
-		cout << "Cart is empty or username not found" << endl;
-		return; 
+		cout << "Cart is empty" << endl;
+		return;
 	}
 
 	queue<Product*> tempCart = shoppingCart_[username];
@@ -159,18 +158,26 @@ void MyDataStore::buyCart(std::string username)
 	while (!tempCart.empty())
 	{
 		Product* prod = tempCart.front();
-		tempCart.pop();
+		tempCart.pop(); 
 
-		if (users_[username]->getBalance() >= prod->getPrice()
-			&& prod->getQty() > 0)
+		if (prod->getQty() > 0) 
 		{
-			users_[username]->deductAmount(prod->getPrice());
-			prod->subtractQty(1);
+			if (users_[username]->getBalance() >= prod->getPrice())
+			{
+				users_[username]->deductAmount(prod->getPrice());
+				prod->subtractQty(1);
+			}
+			else
+			{
+				newCart.push(prod);
+			}
 		}
 		else
 		{
 			newCart.push(prod);
 		}
 	}
+
 	shoppingCart_[username] = newCart;
+}
 }

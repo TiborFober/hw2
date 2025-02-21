@@ -10,9 +10,10 @@ set<string> Movie::keywords() const
 	set<string> keySet;
 
 	set<string> nameWords = parseStringToWords(name_);
+	set<string> genreWords = parseStringToWords(genre_);
 
 	keySet = setUnion<string>(keySet, nameWords);
-	keySet.insert(genre_);
+	keySet = setUnion<string>(keySet, genreWords);
 
 	return keySet;
 }
