@@ -159,8 +159,8 @@ int main(int argc, char* argv[])
 
     }
 
-	delete productSectionParser;
-	delete userSectionParser;
+	if (productSectionParser) delete productSectionParser;
+	if (userSectionParser) delete userSectionParser;
     return 0;
 }
 

@@ -25,6 +25,7 @@ DBParser::~DBParser()
             it != parsers_.end();
             ++it) {
         delete it->second;
+        it->second = nullptr;
     }
 }
 void DBParser::addSectionParser(const std::string& sectionName,
@@ -116,6 +117,7 @@ ProductSectionParser::~ProductSectionParser()
             it != prodParsers_.end();
             ++it) {
         delete it->second;
+        it->second = nullptr;
     }
 }
 
