@@ -85,6 +85,9 @@
     <Text Include="database.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="databaseout.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile">

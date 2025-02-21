@@ -124,7 +124,7 @@ int main(int argc, char* argv[])
 					}
 					else
 					{
-						ds.addToCart(username, hits[hitIndex]);
+						ds.addToCart(username, hitIndex);
 					}
 				}
 				else

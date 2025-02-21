@@ -3,31 +3,34 @@
 
 #include "datastore.h"
 #include <map>
-#include <queue>
+#include <vector>
+#include <set>
 
 class MyDataStore : public DataStore
 {
 public:
+	MyDataStore();
 	~MyDataStore();
 
-	virtual void addProduct(Product* p);
-	virtual void addUser(User* u);
-	virtual std::vector<Product*> search(std::vector<std::string>& terms, int type);
-	virtual void dump(std::ostream& ofile);
+	void addProduct(Product* p) override;
+	void addUser(User* u) override;
+	std::vector<Product*> search(std::vector<std::string>& terms, int type) override;
+	void dump(std::ostream& ofile) override;
 
-	// Shopping cart functions
-	void addToCart(std::string username, Product* p);
+	void addToCart(std::string username, int hitResultIndex);
 	void viewCart(std::string username);
 	void buyCart(std::string username);
+	void printProducts();
 
 private:
 	std::vector<Product*> products_;
 	std::map<std::string, User*> users_;
 	std::map<std::string, std::set<Product*>> keywordMap_;
-	std::map<std::string, std::queue<Product*>> shoppingCart_;
+	std::map<std::string, std::vector<Product*>> userCarts_;
+	std::vector<Product*> lastSearchResults_;
 };
 
-
 #endif
+
 
 
