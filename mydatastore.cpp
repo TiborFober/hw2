@@ -100,9 +100,15 @@ void MyDataStore::dump(ostream& ofile)
 
 void MyDataStore::addToCart(std::string username, Product* p)
 {
-	if (users_.find(username) == users_.end())
+	if (users_.find(username) == users_.end())  
 	{
 		cout << "Invalid username" << endl;
+		return;
+	}
+
+	if (!p) 
+	{
+		cout << "Invalid request" << endl;
 		return;
 	}
 

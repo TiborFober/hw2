@@ -1,7 +1,7 @@
 #include "book.h"
 #include "util.h"
 #include <sstream>
-
+#include <iomanip>
 
 using namespace std;
 
@@ -24,9 +24,9 @@ set<string> Book::keywords() const
 string Book::displayString() const
 {
 	stringstream ss;
-	ss << name_ << "\n";
-	ss << "Author: " << author_ << " ISBN: " << isbn_ << "\n";
-	ss << price_ << " " << qty_ << " left.";
+	ss << name_ << "\n"
+		<< "Author: " << author_ << " ISBN: " << isbn_ << "\n"
+		<< fixed << setprecision(2) << price_ << " " << qty_ << " left.";
 
 	return ss.str();
 }
