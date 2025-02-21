@@ -19,10 +19,12 @@ MyDataStore::~MyDataStore() {
 
 void MyDataStore::addProduct(Product* toAdd) {
 	products_.push_back(toAdd);
+
 	std::set<std::string> keySet = toAdd->keywords();
 
+	std::set<std::string>::iterator it;
 
-	for (std::set<std::string>::iterator it = keySet.begin(); it != keySet.end(); ++it) {
+	for (it = keySet.begin(); it != keySet.end(); it++) {
 		keywordMap_[*it].insert(toAdd);
 	}
 }
@@ -36,42 +38,32 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 
 	if (terms.empty()) return {};
 
-	std::vector<std::set<Product*>> productSets;
+	vector<set<Product*>> productSets;
 
-	for (std::vector<std::string>::iterator it = terms.begin(); it != terms.end(); ++it) 
-	{
-		cout << "- " << *it << endl;
-	}
-
-	for (std::vector<std::string>::iterator it = terms.begin(); it != terms.end(); ++it) 
-	{
-		if (keywordMap_.find(*it) != keywordMap_.end()) 
-		{
+	vector<string>::iterator it;
+	for (it = terms.begin(); it != terms.end(); it++) {
+		if (keywordMap_.find(*it) != keywordMap_.end()) {
 			productSets.push_back(keywordMap_[*it]);
 		}
-
+		else {
+			productSets.push_back(set<Product*>());
+		}
 	}
 
-	if (productSets.empty()) 
-	{
-		return {};
-	}
-
-	resultSet = productSets[0];
-	for (size_t i = 1; i < productSets.size(); i++) {
-		if (type == 0) {
+	if (type == 0) {
+		resultSet = productSets[0];
+		for (size_t i = 1; i < productSets.size(); i++) {
 			resultSet = setIntersection(resultSet, productSets[i]);
 		}
-		else {
+	}
+	else if (type == 1) {
+		resultSet = productSets[0];
+		for (size_t i = 1; i < productSets.size(); i++) {
 			resultSet = setUnion(resultSet, productSets[i]);
 		}
 	}
 
-	lastSearchResults_.clear();
-	for (std::set<Product*>::iterator it = resultSet.begin(); it != resultSet.end(); ++it) {
-		lastSearchResults_.push_back(*it);
-	}
-
+	lastSearchResults_ = std::vector<Product*>(resultSet.begin(), resultSet.end());
 
 	return lastSearchResults_;
 }
@@ -96,13 +88,13 @@ void MyDataStore::dump(std::ostream& ofile) {
 	ofile << "</users>";
 }
 
-void MyDataStore::addToCart(std::string user, int hitResultIndex) 
-{
+void MyDataStore::addToCart(std::string user, int hitResultIndex) {
 	if (users_.find(user) == users_.end()) {
 		cout << "Invalid request" << endl;
 		return;
 	}
 
+	//if(hitResultIndex < 0 or )
 
 	userCarts_[user].push_back(lastSearchResults_[hitResultIndex]);
 }
@@ -159,7 +151,6 @@ void MyDataStore::printProducts() {
 	}
 
 }
-
 
 
 
