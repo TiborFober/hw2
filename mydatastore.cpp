@@ -23,6 +23,7 @@ void MyDataStore::addProduct(Product* p)
 
 void MyDataStore::addUser(User* u)
 {
+	string lowerName = convToLower(u->getName());
 	users_.insert(make_pair(u->getName(), u));
 }
 
@@ -117,34 +118,33 @@ void MyDataStore::addToCart(std::string username, Product* p)
 
 void MyDataStore::viewCart(std::string username)
 {
-	if (shoppingCart_.find(username) == shoppingCart_.end()) 
+	if (users_.find(username) == users_.end())
 	{
-		cout << "Username not found" << endl;
+		cout << "Invalid username" << endl;
 		return;
 	}
-	if (shoppingCart_[username].empty()) 
+	
+	if (shoppingCart_.find(username) == shoppingCart_.end() || shoppingCart_[username].empty())
 	{
 		cout << "Cart is empty" << endl;
 		return;
 	}
 
 	queue<Product*> tempCart = shoppingCart_[username];
-
 	int index = 1;
 
 	while (!tempCart.empty())
 	{
 		Product* prod = tempCart.front();
+		tempCart.pop();
+
 		cout << "Item " << index << ":" << endl;
 		cout << prod->displayString() << endl;
 		cout << endl;
-
-		tempCart.pop();
 		index++;
-
 	}
-
 }
+
 
 void MyDataStore::buyCart(std::string username)
 {

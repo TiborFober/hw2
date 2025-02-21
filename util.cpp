@@ -37,7 +37,6 @@ set<string> parseStringToWords(string rawWords)
 			if (word.length() >= 2) 
 			{
 				setWords.insert(word);
-				cout << "DEBUG: Added keyword '" << word << "'" << endl;
 			}
 			word.clear();
 		}
@@ -46,45 +45,11 @@ set<string> parseStringToWords(string rawWords)
 	if (word.length() >= 2)
 	{
 		setWords.insert(word);
-		cout << "DEBUG: Added keyword '" << word << "'" << endl;
 	}
 
 	return setWords;
 }
 
-/*set<string> parseStringToWords(string rawWords)
-{
-    set<string> setWords;
-
-    string word;
-
-    for (size_t i = 0; i < rawWords.length(); i++)
-    {
-        char c = tolower(rawWords[i]);
-
-        if (ispunct(c) || isspace(c)) // if punctuation or space, see if want to add word to set
-        {
-            if (word.length() >= 2)
-            {
-                setWords.insert(word);
-            }
-            word.clear();
-        } 
-        else // is a digit or letter
-        {
-            word.push_back(c);
-        }
-        
-    }
-
-	if (!word.empty() && word.length() >= 2) 
-    {
-		setWords.insert(word);
-	}
-    return setWords;
-}
-
-*/
 
 
 
