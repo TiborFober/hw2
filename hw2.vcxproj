@@ -146,7 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="database.txt" />
-    <Text Include="databaseout.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />

@@ -38,6 +38,13 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 
 	if (terms.empty()) return {};
 
+	std::cout << "- ";
+	for (std::vector<std::string>::iterator it = terms.begin(); it != terms.end(); ++it) 
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
+
 	vector<set<Product*>> productSets;
 
 	vector<string>::iterator it;

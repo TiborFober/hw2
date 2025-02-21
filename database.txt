@@ -1,11 +1,17 @@
 <products>
-clothing
-Men's Fitted Shirt
-39.99
-25
-Medium
-J. Crew
+movie
+FOO
+0.99
+8
+Disaster
+PG-13
+movie
+foo
+20.25
+4
+Programming
+TV-14
 </products>
 <users>
-user 10000.00 0
+user 1000.0 0
 </users>
