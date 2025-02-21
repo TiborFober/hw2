@@ -40,30 +40,35 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 
 	vector<set<Product*>> productSets;
 
-	vector<string>::iterator it;
-	for (it = terms.begin(); it != terms.end(); it++) {
-		if (keywordMap_.find(*it) != keywordMap_.end()) {
-			productSets.push_back(keywordMap_[*it]);
-		}
-		else {
-			productSets.push_back(set<Product*>());
-		}
+	
+	for (size_t i = 0; i < terms.size(); i++) {
+		cout << "- " << terms[i] << endl;
 	}
 
-	if (type == 0) {
-		resultSet = productSets[0];
-		for (size_t i = 1; i < productSets.size(); i++) {
+	for (vector<string>::iterator it = terms.begin(); it != terms.end(); it++) {
+		if (keywordMap_.find(*it) != keywordMap_.end()) 
+		{
+			productSets.push_back(keywordMap_[*it]);
+		}
+
+	}
+
+	if (productSets.empty()) {
+		return {};
+	}
+
+	resultSet = productSets[0];
+	for (size_t i = 1; i < productSets.size(); i++) {
+		if (type == 0) {
 			resultSet = setIntersection(resultSet, productSets[i]);
 		}
-	}
-	else if (type == 1) {
-		resultSet = productSets[0];
-		for (size_t i = 1; i < productSets.size(); i++) {
+		else {
 			resultSet = setUnion(resultSet, productSets[i]);
 		}
 	}
 
 	lastSearchResults_ = std::vector<Product*>(resultSet.begin(), resultSet.end());
+
 
 	return lastSearchResults_;
 }
