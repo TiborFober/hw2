@@ -1,4 +1,11 @@
 ﻿  amazon.cpp
+  book.cpp
+  clothing.cpp
+  db_parser.cpp
+  movie.cpp
+  mydatastore.cpp
+  product.cpp
+  product_parser.cpp
   util.cpp
   Generating Code...
   hw2.vcxproj -> C:\Users\tibor\source\repos\TiborFober\hw2\x64\Debug\hw2.exe
