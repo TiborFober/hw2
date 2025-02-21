@@ -10,8 +10,12 @@ set<string> Book::keywords() const
 {
 	set<string> keySet;
 
-	keySet = setUnion<string>(keySet, parseStringToWords(name_));
-	keySet = setUnion<string>(keySet, parseStringToWords(author_));
+	set<string> nameWords = parseStringToWords(name_);
+	set<string> authorWords = parseStringToWords(author_);
+
+	keySet = setUnion<string>(keySet, nameWords);
+	keySet = setUnion<string>(keySet, authorWords);
+
 	keySet.insert(isbn_);
 
 	return keySet;
