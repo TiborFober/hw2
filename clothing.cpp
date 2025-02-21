@@ -13,8 +13,7 @@ set<string> Clothing::keywords() const
 	set<string> brandWords = parseStringToWords(brand_);
 
 
-	keySet = setUnion<string>(keySet, nameWords);
-	keySet = setUnion<string>(keySet, brandWords);
+	keySet = setUnion<string>(nameWords, brandWords);
 
 	return keySet;
 }

@@ -15,7 +15,44 @@ string convToLower(string src)
 
 /** Complete the code to convert a string containing a rawWord
     to a set of words based on the criteria given in the assignment **/
+
 set<string> parseStringToWords(string rawWords)
+{
+	set<string> setWords;
+	string word;
+
+	cout << "DEBUG: Parsing string '" << rawWords << "'" << endl;
+
+	for (size_t i = 0; i < rawWords.length(); i++)
+	{
+		char c = tolower(rawWords[i]);
+
+		// ? Allow letters, numbers, and some symbols inside words
+		if (isalnum(c) || c == '+' || c == '#' || c == '-' || c == '\'')
+		{
+			word.push_back(c);
+		}
+		else if (!word.empty()) // If punctuation or space ends the word
+		{
+			if (word.length() >= 2) // ? Ensure only meaningful words are stored
+			{
+				setWords.insert(word);
+				cout << "DEBUG: Added keyword '" << word << "'" << endl;
+			}
+			word.clear();
+		}
+	}
+
+	if (word.length() >= 2)
+	{
+		setWords.insert(word);
+		cout << "DEBUG: Added keyword '" << word << "'" << endl;
+	}
+
+	return setWords;
+}
+
+/*set<string> parseStringToWords(string rawWords)
 {
     set<string> setWords;
 
@@ -47,7 +84,7 @@ set<string> parseStringToWords(string rawWords)
     return setWords;
 }
 
-
+*/
 
 
 

@@ -23,9 +23,15 @@ Hidden Figures DVD
 1
 Drama
 PG
+movie
+Great Heights
+22.49
+5
+and
+PG-13
 </products>
 <users>
-aturing 100.00 0
-johnvn 50.00 1
-adal 120.00 1
+rafsilva 100.00 0
+redekopp 50.00 1
+saty 120.00 1
 </users>

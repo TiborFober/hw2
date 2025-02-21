@@ -8,13 +8,10 @@ using namespace std;
 set<string> Movie::keywords() const
 {
 	set<string> keySet;
-
 	set<string> nameWords = parseStringToWords(name_);
 	set<string> genreWords = parseStringToWords(genre_);
 
-	keySet = setUnion<string>(keySet, nameWords);
-	keySet = setUnion<string>(keySet, genreWords);
-
+	keySet = setUnion(nameWords, genreWords); 
 	return keySet;
 }
 

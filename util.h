@@ -29,8 +29,8 @@ std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 template <typename T>
 std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
 {
-	std::set<T> unionSet = s1;
-	unionSet.insert(s2.begin(), s2.end());
+	std::set<T> unionSet = s1;  
+	unionSet.insert(s2.begin(), s2.end()); 
 	return unionSet;
 }
 
