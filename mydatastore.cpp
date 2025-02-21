@@ -180,4 +180,3 @@ void MyDataStore::buyCart(std::string username)
 
 	shoppingCart_[username] = newCart;
 }
-}
