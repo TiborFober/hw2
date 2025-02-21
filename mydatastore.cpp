@@ -112,18 +112,20 @@ void MyDataStore::viewCart(std::string user) {
 		return;
 	}
 
-	if (userCarts_.find(user) == userCarts_.end() || userCarts_[user].empty()) 
+	if (userCarts_.find(user) == userCarts_.end() || userCarts_[user].empty())
 	{
 		cout << "Cart is empty" << endl;
 		return;
 	}
 
 	vector<Product*>& userCart = userCarts_[user];
-	for (size_t i = 0; i < userCart.size(); ++i) 
-	{
-		cout << "Item " << (i + 1) << ":" << endl;
-		cout << userCart[i]->displayString() << endl;
-		cout << endl;
+
+	size_t index = 1;
+	for (std::vector<Product*>::iterator it = userCart.begin(); it != userCart.end(); ++it) {
+		std::cout << "Item " << index << ":" << std::endl;
+		std::cout << (*it)->displayString() << std::endl;
+		std::cout << std::endl;
+		index++;
 	}
 }
 
