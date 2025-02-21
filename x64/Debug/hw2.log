@@ -1,3 +1,2 @@
 ﻿  util.cpp
-C:\Users\tibor\source\repos\TiborFober\hw2\util.cpp(35,27): error C2059: syntax error: '/'
-C:\Users\tibor\source\repos\TiborFober\hw2\util.cpp(36,3): error C2143: syntax error: missing ';' before '{'
+  hw2.vcxproj -> C:\Users\tibor\source\repos\TiborFober\hw2\x64\Debug\hw2.exe

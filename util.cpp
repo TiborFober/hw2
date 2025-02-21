@@ -32,7 +32,7 @@ set<string> parseStringToWords(string rawWords)
 		{
 			word.push_back(c);
 		}
-		else if (!word.empty()) /
+		else if (!word.empty()) 
 		{
 			if (word.length() >= 2) 
 			{
