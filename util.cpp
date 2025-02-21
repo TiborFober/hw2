@@ -7,9 +7,9 @@
 #include "util.h"
 
 using namespace std;
-std::string convToLower(string src)
+string convToLower(string src)
 {
-    std::transform(src.begin(), src.end(), src.begin(), ::tolower);
+    transform(src.begin(), src.end(), src.begin(), ::tolower);
     return src;
 }
 

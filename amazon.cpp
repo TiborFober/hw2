@@ -148,6 +148,24 @@ int main(int argc, char* argv[])
                     cout << "Invalid username" << endl;
                 }
             }
+            else if (cmd == "QUIT")
+            {
+                std::string filename;
+                
+                if (ss >> filename)
+                {
+                    ofstream ofile(filename.c_str());
+                    if (ofile.fail())
+                    {
+                        cout << "Error. Unable to open file: " << filename << endl;
+                    }
+                    else
+                    {
+                        ds.dump(ofile);
+                        ofile.close();
+                    }
+                }
+            }
 
 
 
