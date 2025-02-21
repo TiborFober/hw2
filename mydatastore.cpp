@@ -19,12 +19,10 @@ MyDataStore::~MyDataStore() {
 
 void MyDataStore::addProduct(Product* toAdd) {
 	products_.push_back(toAdd);
-
 	std::set<std::string> keySet = toAdd->keywords();
 
-	std::set<std::string>::iterator it;
 
-	for (it = keySet.begin(); it != keySet.end(); it++) {
+	for (std::set<std::string>::iterator it = keySet.begin(); it != keySet.end(); ++it) {
 		keywordMap_[*it].insert(toAdd);
 	}
 }
@@ -38,14 +36,15 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 
 	if (terms.empty()) return {};
 
-	vector<set<Product*>> productSets;
+	std::vector<std::set<Product*>> productSets;
 
-	
-	for (size_t i = 0; i < terms.size(); i++) {
-		cout << "- " << terms[i] << endl;
+	for (std::vector<std::string>::iterator it = terms.begin(); it != terms.end(); ++it) 
+	{
+		cout << "- " << *it << endl;
 	}
 
-	for (vector<string>::iterator it = terms.begin(); it != terms.end(); it++) {
+	for (std::vector<std::string>::iterator it = terms.begin(); it != terms.end(); ++it) 
+	{
 		if (keywordMap_.find(*it) != keywordMap_.end()) 
 		{
 			productSets.push_back(keywordMap_[*it]);
@@ -53,7 +52,8 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 
 	}
 
-	if (productSets.empty()) {
+	if (productSets.empty()) 
+	{
 		return {};
 	}
 
@@ -67,7 +67,10 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 		}
 	}
 
-	lastSearchResults_ = std::vector<Product*>(resultSet.begin(), resultSet.end());
+	lastSearchResults_.clear();
+	for (std::set<Product*>::iterator it = resultSet.begin(); it != resultSet.end(); ++it) {
+		lastSearchResults_.push_back(*it);
+	}
 
 
 	return lastSearchResults_;
