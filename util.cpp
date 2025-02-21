@@ -27,14 +27,14 @@ set<string> parseStringToWords(string rawWords)
 	{
 		char c = tolower(rawWords[i]);
 
-		// ? Allow letters, numbers, and some symbols inside words
+		
 		if (isalnum(c) || c == '+' || c == '#' || c == '-' || c == '\'')
 		{
 			word.push_back(c);
 		}
-		else if (!word.empty()) // If punctuation or space ends the word
+		else if (!word.empty()) /
 		{
-			if (word.length() >= 2) // ? Ensure only meaningful words are stored
+			if (word.length() >= 2) 
 			{
 				setWords.insert(word);
 				cout << "DEBUG: Added keyword '" << word << "'" << endl;
