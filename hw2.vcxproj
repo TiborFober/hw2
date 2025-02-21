@@ -123,6 +123,7 @@
     <ClCompile Include="book.cpp" />
     <ClCompile Include="clothing.cpp" />
     <ClCompile Include="db_parser.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="movie.cpp" />
     <ClCompile Include="mydatastore.cpp" />
     <ClCompile Include="product.cpp" />

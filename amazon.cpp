@@ -10,6 +10,9 @@
 #include "product_parser.h"
 #include "util.h"
 #include "mydatastore.h"
+#include "movie.h"
+#include "book.h"
+#include "clothing.h"
 
 using namespace std;
 struct ProdNameSorter {
@@ -26,6 +29,7 @@ int main(int argc, char* argv[])
         return 1;
     }
 
+
     /****************
      * Declare your derived DataStore object here replacing
      *  DataStore type to your derived type
@@ -33,7 +37,7 @@ int main(int argc, char* argv[])
     MyDataStore ds;
 
 
-
+    
     // Instantiate the individual section and product parsers we want
     ProductSectionParser* productSectionParser = new ProductSectionParser;
     productSectionParser->addProductParser(new ProductBookParser);

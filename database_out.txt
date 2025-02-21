@@ -1,0 +1,24 @@
+<products>
+book
+The C++ Programming Language
+45.99
+10
+1234567890
+Bjarne Stroustrup
+clothing
+T-Shirt
+19.99
+4
+M
+Nike
+movie
+Inception
+12.99
+2
+Science Fiction
+PG-13
+</products>
+<users>
+alice 100 1
+bob 17.02 0
+</users>

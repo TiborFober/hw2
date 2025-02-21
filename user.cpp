@@ -1,4 +1,5 @@
 #include "user.h"
+#include <iomanip>
 using namespace std;
 
 User::User() : name_("unknown"), balance_(0.0), type_(1)
@@ -34,5 +35,13 @@ void User::deductAmount(double amt)
 
 void User::dump(std::ostream& os)
 {
-    os << name_ << " "  << balance_ << " " << type_ << endl;
+	if (balance_ == static_cast<int>(balance_))
+	{
+		os << name_ << " " << static_cast<int>(balance_) << " " << type_ << endl;
+	}
+	else
+	{
+		os << name_ << " " << fixed << setprecision(2) << balance_ << " " << type_ << endl;
+	}
 }
+

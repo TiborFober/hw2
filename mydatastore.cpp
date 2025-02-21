@@ -1,5 +1,6 @@
 #include "mydatastore.h"
 #include "util.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -89,6 +90,7 @@ void MyDataStore::dump(ostream& ofile)
 	ofile << "<users>" << endl;
 	for (map<string, User*>::iterator it = users_.begin(); it != users_.end(); ++it)
 	{
+		ofile << fixed << setprecision(2);
 		it->second->dump(ofile);
 	}
 	ofile << "</users>" << endl;
