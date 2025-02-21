@@ -95,13 +95,24 @@ void MyDataStore::dump(std::ostream& ofile) {
 	ofile << "</users>";
 }
 
-void MyDataStore::addToCart(std::string user, int hitResultIndex) {
-	if (users_.find(user) == users_.end()) {
-		cout << "Invalid request" << endl;
+void MyDataStore::addToCart(std::string user, int hitResultIndex) 
+{
+	if (users_.find(user) == users_.end()) 
+	{
+		std::cout << "Invalid request" << std::endl;
 		return;
 	}
 
-	//if(hitResultIndex < 0 or )
+	if (lastSearchResults_.empty()) {
+		std::cout << "Invalid request" << std::endl;
+		return;
+	}
+
+	if (hitResultIndex < 0 || hitResultIndex >= static_cast<int>(lastSearchResults_.size())) 
+	{
+		std::cout << "Invalid request" << std::endl;
+		return;
+	}
 
 	userCarts_[user].push_back(lastSearchResults_[hitResultIndex]);
 }
