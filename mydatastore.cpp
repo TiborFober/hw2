@@ -44,8 +44,20 @@ void MyDataStore::addProduct(Product* p)
 
 void MyDataStore::addUser(User* u)
 {
+	if (u == nullptr) {
+		return;
+	}
+
 	string lowerName = convToLower(u->getName());
-	users_.insert(make_pair(u->getName(), u));
+
+	if (users_.find(lowerName) != users_.end()) 
+	{
+		delete u; 
+		return;
+	}
+
+	users_[lowerName] = u;
+	
 }
 
 vector<Product*> MyDataStore::search(vector<string>& terms, int type)
