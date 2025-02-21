@@ -24,9 +24,13 @@ DBParser::~DBParser()
     for(map<string, SectionParser*>::iterator it = parsers_.begin();
             it != parsers_.end();
             ++it) {
-        delete it->second;
-        it->second = nullptr;
+		if (it->second != nullptr)
+		{
+			delete it->second;
+			it->second = nullptr; 
+		}
     }
+    parsers_.clear();
 }
 void DBParser::addSectionParser(const std::string& sectionName,
                                 SectionParser*     parser)
@@ -116,9 +120,13 @@ ProductSectionParser::~ProductSectionParser()
     for(map<string, ProductParser*>::iterator it = prodParsers_.begin();
             it != prodParsers_.end();
             ++it) {
-        delete it->second;
-        it->second = nullptr;
+		if (it->second != nullptr)
+		{
+			delete it->second;
+			it->second = nullptr; 
+		}
     }
+    prodParsers_.clear();
 }
 
 void ProductSectionParser::addProductParser(ProductParser* p)
