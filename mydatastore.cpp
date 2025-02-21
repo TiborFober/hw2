@@ -7,6 +7,7 @@ using namespace std;
 
 MyDataStore::~MyDataStore()
 {
+	// free products
 	for (std::vector<Product*>::iterator it = products_.begin(); it != products_.end(); ++it) 
 	{
 		if (*it != nullptr) 
@@ -15,6 +16,16 @@ MyDataStore::~MyDataStore()
 		}
 	}
 	products_.clear();
+
+	// free users
+	for (std::map<std::string, User*>::iterator it = users_.begin(); it != users_.end(); ++it) 
+	{
+		if (it->second != nullptr) 
+		{
+			delete it->second; 
+		}
+	}
+	users_.clear();
 }
 
 void MyDataStore::addProduct(Product* p)
