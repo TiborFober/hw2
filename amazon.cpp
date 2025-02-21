@@ -172,9 +172,12 @@ void displayProducts(std::vector<Product*>& hits) {
 		return;
 	}
 
-	for (size_t i = 0; i < hits.size(); ++i) {
-		std::cout << "Item " << (i + 1) << ":" << std::endl;
-		std::cout << hits[i]->displayString() << std::endl;
+	size_t index = 1; 
+	for (std::vector<Product*>::iterator it = hits.begin(); it != hits.end(); ++it) 
+	{
+		std::cout << "Item " << index << ":" << std::endl;
+		std::cout << (*it)->displayString() << std::endl;
 		std::cout << std::endl;
+		index++; 
 	}
 }
