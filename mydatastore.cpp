@@ -168,17 +168,18 @@ void MyDataStore::buyCart(std::string user)
 	userCarts_[user] = remainingItems;
 }
 
-void MyDataStore::printProducts() {
-	vector<Product*>::iterator it;
+void MyDataStore::printProducts() 
+{
 
-	for (it = products_.begin(); it != products_.end(); it++) {
+	for (vector<Product*>::iterator it = products_.begin(); it != products_.end(); ++it) 
+	{
 		cout << (*it)->displayString() << endl;
 	}
 
-	std::map<std::string, std::set<Product*>>::iterator itt;
 
-	for (itt = keywordMap_.begin(); itt != keywordMap_.end(); itt++) {
-		cout << (itt->first) << endl;
+	for (map<string, set<Product*>>::iterator it = keywordMap_.begin(); it != keywordMap_.end(); ++it) 
+	{
+		cout << it->first << endl;
 	}
 
 }
