@@ -53,7 +53,7 @@ void Product::dump(std::ostream& os) const
 {
 	os << category_ << endl;
 	os << name_ << endl;
-	os << fixed << setprecision(2) << price_ << endl;  // Ensure 2 decimal places
+	os << price_ << endl; 
 	os << qty_ << endl;
 }
 

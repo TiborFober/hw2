@@ -8,7 +8,7 @@
 using namespace std;
 
 
-ProductParser::ProductParser() : price_(0), qty_(0)
+ProductParser::ProductParser() : price_(0.0), qty_(0)
 {
 
 }

@@ -5,14 +5,13 @@
 using namespace std;
 
 // Clothing
-std::set<std::string> Clothing::keywords() const {
+std::set<std::string> Clothing::keywords() const 
+{
 	std::set<std::string> keySet;
 	std::set<std::string> nameWords = parseStringToWords(name_);
 	std::set<std::string> brandWords = parseStringToWords(brand_);
 
 	keySet = setUnion(nameWords, brandWords);
-
-
 
 	return keySet;
 }

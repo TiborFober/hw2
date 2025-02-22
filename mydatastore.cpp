@@ -170,7 +170,6 @@ void MyDataStore::buyCart(std::string user)
 
 void MyDataStore::printProducts() 
 {
-
 	for (vector<Product*>::iterator it = products_.begin(); it != products_.end(); ++it) 
 	{
 		cout << (*it)->displayString() << endl;
