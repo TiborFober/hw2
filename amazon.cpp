@@ -1,10 +1,4 @@
-﻿
-
-
-
-
-
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 #include <set>
 #include <sstream>
@@ -174,6 +168,8 @@ void displayProducts(std::vector<Product*>& hits)
 		std::cout << "No results found." << std::endl;
 		return;
 	}
+
+	sort(hits.begin(), hits.end(), ProdNameSorter());
 
 	size_t index = 1; 
 	for (std::vector<Product*>::iterator it = hits.begin(); it != hits.end(); ++it) 
