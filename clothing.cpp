@@ -21,7 +21,7 @@ string Clothing::displayString() const
 	stringstream ss;
 	ss << name_ << "\n"
 		<< "Size: " << size_ << " Brand: " << brand_ << "\n"
-		<< price_ << " " << qty_ << " left.";
+		<< price_ << " " << qty_ << " left.\n";
 
 	return ss.str();
 }
