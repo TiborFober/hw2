@@ -14,7 +14,6 @@ std::set<std::string> Clothing::keywords() const
 	keySet = setUnion(nameWords, brandWords);
 
 	return keySet;
-
 }
 
 
