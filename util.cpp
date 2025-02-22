@@ -21,6 +21,34 @@ set<string> parseStringToWords(string rawWords)
 	set<string> setWords;
 	string word;
 
+	for (size_t i = 0; i < rawWords.length(); i++)
+	{
+		char c = tolower(rawWords[i]);
+
+		if (ispunct(c) || isspace(c)) // if punctuation or space, process word
+		{
+			if (word.length() >= 2)
+			{
+				setWords.insert(word);
+			}
+			word.clear();
+		}
+		else
+		{
+			word.push_back(c);
+		}
+	}
+
+	if (word.length() >= 2)
+	{
+		setWords.insert(word);
+	}
+	return setWords;
+}
+/* {
+	set<string> setWords;
+	string word;
+
 
 	for (size_t i = 0; i < rawWords.length(); i++)
 	{
@@ -48,7 +76,7 @@ set<string> parseStringToWords(string rawWords)
 
 	return setWords;
 }
-
+*/
 
 
 
