@@ -45,38 +45,7 @@ set<string> parseStringToWords(string rawWords)
 	}
 	return setWords;
 }
-/* {
-	set<string> setWords;
-	string word;
 
-
-	for (size_t i = 0; i < rawWords.length(); i++)
-	{
-		char c = tolower(rawWords[i]);
-
-		
-		if (isalnum(c) || c == '+' || c == '#' || c == '-' || c == '\'')
-		{
-			word.push_back(c);
-		}
-		else if (!word.empty()) 
-		{
-			if (word.length() >= 2) 
-			{
-				setWords.insert(word);
-			}
-			word.clear();
-		}
-	}
-
-	if (word.length() >= 2)
-	{
-		setWords.insert(word);
-	}
-
-	return setWords;
-}
-*/
 
 
 
