@@ -17,70 +17,76 @@ MyDataStore::~MyDataStore()
 	}
 }
 
-void MyDataStore::addProduct(Product* toAdd) {
-	products_.push_back(toAdd);
+void MyDataStore::addProduct(Product* prod) 
+{
+	products_.push_back(prod);
 
-	std::set<std::string> keySet = toAdd->keywords();
+	set<std::string> keySet = prod->keywords();
 
-	std::set<std::string>::iterator it;
 
-	for (it = keySet.begin(); it != keySet.end(); it++) {
-		keywordMap_[*it].insert(toAdd);
+	for (set<string>::iterator it = keySet.begin(); it != keySet.end(); ++it) 
+	{
+		keywordMap_[*it].insert(prod);
 	}
 }
 
-void MyDataStore::addUser(User* newUser) {
+void MyDataStore::addUser(User* newUser) 
+{
 	users_[newUser->getName()] = newUser;
 }
 
-std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int type) {
-	std::set<Product*> resultSet;
+std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int type) 
+{
+	set<Product*> resultSet;
 
-	if (terms.empty()) return {};
-
-	std::cout << "- ";
-	for (std::vector<std::string>::iterator it = terms.begin(); it != terms.end(); ++it) 
-	{
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
+	if (terms.empty())
+		return vector<Product*>(); // return empty vector
 
 	vector<set<Product*>> productSets;
 
-	vector<string>::iterator it;
-	for (it = terms.begin(); it != terms.end(); it++) {
-		if (keywordMap_.find(*it) != keywordMap_.end()) {
+	for (vector<string>::iterator it = terms.begin(); it != terms.end(); ++it) {
+		if (keywordMap_.find(*it) != keywordMap_.end()) 
+		{
 			productSets.push_back(keywordMap_[*it]);
 		}
-		else {
+		else 
+		{
 			productSets.push_back(set<Product*>());
 		}
 	}
 
-	if (type == 0) {
+	if (type == 0) 
+	{
 		resultSet = productSets[0];
-		for (size_t i = 1; i < productSets.size(); i++) {
+		for (size_t i = 1; i < productSets.size(); i++) 
+		{
 			resultSet = setIntersection(resultSet, productSets[i]);
 		}
 	}
-	else if (type == 1) {
+	else if (type == 1) 
+	{
 		resultSet = productSets[0];
-		for (size_t i = 1; i < productSets.size(); i++) {
+		for (size_t i = 1; i < productSets.size(); i++) 
+		{
 			resultSet = setUnion(resultSet, productSets[i]);
 		}
 	}
 
-	lastSearchResults_ = std::vector<Product*>(resultSet.begin(), resultSet.end());
+	searchResults_.clear();
+	for (set<Product*>::iterator it = resultSet.begin(); it != resultSet.end(); ++it)
+	{
+		searchResults_.push_back(*it);
+	}
 
-	return lastSearchResults_;
+	return searchResults_;
 }
 
-void MyDataStore::dump(std::ostream& ofile) {
+void MyDataStore::dump(std::ostream& ofile) 
+{
 	ofile << "<products>\n";
 
-	vector<Product*>::iterator it;
-
-	for (it = products_.begin(); it != products_.end(); it++) {
+	for (vector<Product*>::iterator it = products_.begin(); it != products_.end(); ++it) 
+	{
 		(*it)->dump(ofile);
 	}
 
@@ -89,13 +95,14 @@ void MyDataStore::dump(std::ostream& ofile) {
 
 	map<string, User*>::iterator it2;
 
-	for (it2 = users_.begin(); it2 != users_.end(); it2++) {
-		it2->second->dump(ofile);
+	for (map<string, User*>::iterator it = users_.begin(); it != users_.end(); ++it) 
+	{
+		it->second->dump(ofile);
 	}
 	ofile << "</users>";
 }
 
-void MyDataStore::addToCart(std::string user, int hitResultIndex) 
+void MyDataStore::addToCart(string user, int hitResIndex) 
 {
 	if (users_.find(user) == users_.end()) 
 	{
@@ -103,22 +110,13 @@ void MyDataStore::addToCart(std::string user, int hitResultIndex)
 		return;
 	}
 
-	if (lastSearchResults_.empty()) {
-		std::cout << "Invalid request" << std::endl;
-		return;
-	}
-
-	if (hitResultIndex < 0 || hitResultIndex >= static_cast<int>(lastSearchResults_.size())) 
-	{
-		std::cout << "Invalid request" << std::endl;
-		return;
-	}
-
-	userCarts_[user].push_back(lastSearchResults_[hitResultIndex]);
+	userCarts_[user].push_back(searchResults_[hitResIndex]);
 }
 
-void MyDataStore::viewCart(std::string user) {
-	if (users_.find(user) == users_.end()) {
+void MyDataStore::viewCart(std::string user) 
+{
+	if (users_.find(user) == users_.end()) 
+	{
 		cout << "Invalid Username" << endl;
 		return;
 	}
@@ -132,38 +130,42 @@ void MyDataStore::viewCart(std::string user) {
 	vector<Product*>& userCart = userCarts_[user];
 
 	size_t index = 1;
-	for (std::vector<Product*>::iterator it = userCart.begin(); it != userCart.end(); ++it) {
-		std::cout << "Item " << index << ":" << std::endl;
-		std::cout << (*it)->displayString() << std::endl;
-		std::cout << std::endl;
+	for (vector<Product*>::iterator it = userCarts_[user].begin(); it != userCarts_[user].end(); ++it)
+	{
+		cout << "Item " << index << endl;
+		cout << (*it)->displayString() << endl;
 		index++;
 	}
 }
 
-void MyDataStore::buyCart(std::string user) {
-
-	if (users_.find(user) == users_.end()) {
+void MyDataStore::buyCart(std::string user) 
+{
+	if (users_.find(user) == users_.end()) 
+	{
 		cout << "Invalid Username" << endl;
 		return;
 	}
 
-	User* currUser = users_[user];
-	vector<Product*>& cart = userCarts_[user];
-	vector<Product*> remaining;
+	
+	
+	vector<Product*> remainingItems;
 
 	vector<Product*>::iterator it;
 
-	for (it = cart.begin(); it != cart.end(); it++) {
-		if (((*it)->getQty() > 0) && (currUser->getBalance() > (*it)->getPrice())) {
+	for (it = userCarts_[user].begin(); it != userCarts_[user].end(); it++)
+	{
+		if (((*it)->getQty() > 0) && (users_[user]->getBalance() > (*it)->getPrice())) 
+		{
 			(*it)->subtractQty(1);
-			currUser->deductAmount((*it)->getPrice());
+			users_[user]->deductAmount((*it)->getPrice());
 		}
-		else {
-			remaining.push_back(*it);
+		else 
+		{
+			remainingItems.push_back(*it);
 		}
 	}
 
-	cart = remaining;
+	userCarts_[user] = remainingItems;
 }
 
 void MyDataStore::printProducts() {

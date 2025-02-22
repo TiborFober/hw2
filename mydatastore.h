@@ -27,7 +27,7 @@ private:
 	std::map<std::string, User*> users_;
 	std::map<std::string, std::set<Product*>> keywordMap_;
 	std::map<std::string, std::vector<Product*>> userCarts_;
-	std::vector<Product*> lastSearchResults_;
+	std::vector<Product*> searchResults_;
 };
 
 #endif
