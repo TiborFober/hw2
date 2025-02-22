@@ -4,16 +4,16 @@ using namespace std;
 
 MyDataStore::MyDataStore() {}
 
-MyDataStore::~MyDataStore() {
-
-	vector<Product*>::iterator it;
-	map<string, User*>::iterator itt;
-
-	for (it = products_.begin(); it != products_.end(); it++) {
+MyDataStore::~MyDataStore() 
+{
+	for (vector<Product*>::iterator it = products_.begin(); it != products_.end(); ++it)
+	{
 		delete (*it);
 	}
-	for (itt = users_.begin(); itt != users_.end(); itt++) {
-		delete itt->second;
+
+	for (map<string, User*>::iterator it = users_.begin(); it != users_.end(); ++it)
+	{
+		delete it->second;
 	}
 }
 
