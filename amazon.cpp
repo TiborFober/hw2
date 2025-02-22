@@ -71,99 +71,93 @@ int main(int argc, char* argv[])
     cout << "  QUIT new_db_filename               " << endl;
     cout << "====================================" << endl;
 
-	vector<Product*> hits;
-	bool done = false;
-	while (!done) {
-		cout << "\nEnter command: " << endl;
-		string line;
-		getline(cin, line);
-		stringstream ss(line);
-		string cmd;
-		if ((ss >> cmd)) {
-			if (cmd == "AND") {
-				string term;
-				vector<string> terms;
-				while (ss >> term) {
-					term = convToLower(term);
-					terms.push_back(term);
-				}
-				hits = ds.search(terms, 0);
-				displayProducts(hits);
-			}
-			else if (cmd == "OR") {
-				string term;
-				vector<string> terms;
-				while (ss >> term) {
-					term = convToLower(term);
-					terms.push_back(term);
-				}
-				hits = ds.search(terms, 1);
-				displayProducts(hits);
-			}
-			else if (cmd == "QUIT") {
-				string filename;
-				if (ss >> filename) {
-					ofstream ofile(filename.c_str());
-					ds.dump(ofile);
-					ofile.close();
-				}
-				done = true;
-			}
-			/* Add support for other commands here */
-			else if (cmd == "ADD")
-			{
-				std::string username;
-				int hitIndex;
-				if (ss >> username >> hitIndex)
-				{
-					hitIndex--;
+    vector<Product*> hits;
+    bool done = false;
+    while (!done) {
+        cout << "\nEnter command: " << endl;
+        string line;
+        getline(cin, line);
+        stringstream ss(line);
+        string cmd;
+        if ((ss >> cmd)) {
+            if (cmd == "AND") {
+                string term;
+                vector<string> terms;
+                while (ss >> term) {
+                    term = convToLower(term);
+                    terms.push_back(term);
+                }
+                hits = ds.search(terms, 0);
+                displayProducts(hits);
+            }
+            else if (cmd == "OR") {
+                string term;
+                vector<string> terms;
+                while (ss >> term) {
+                    term = convToLower(term);
+                    terms.push_back(term);
+                }
+                hits = ds.search(terms, 1);
+                displayProducts(hits);
+            }
+            else if (cmd == "QUIT") {
+                string filename;
+                if (ss >> filename) {
+                    ofstream ofile(filename.c_str());
+                    ds.dump(ofile);
+                    ofile.close();
+                }
+                done = true;
+            }
+            else if (cmd == "ADD") {
+                string username;
+                int hitNumber;
+                if (ss >> username >> hitNumber) {
+                    if ((hitNumber < 1) || (hitNumber > int(hits.size()))) {
+                        cout << "Invalid Request" << endl;
+                    }
+                    else {
+                        ds.addToCart(username, hitNumber - 1);
+                    }
+                }
+                else {
+                    cout << "Invalid Request" << endl;
+                }
+            }
+            else if (cmd == "VIEWCART") {
+                string username;
+                if (ss >> username) {
+                    ds.viewCart(username);
+                }
+                else {
+                    cout << "Invalid Request" << endl;
+                }
+            }
+            else if (cmd == "BUYCART") {
+                string username;
+                if (ss >> username) {
+                    ds.buyCart(username);
+                }
+                else {
+                    cout << "Invalid Request" << endl;
+                }
+            }
+            else if (cmd == "print") {
+                ds.printProducts();
+            }
+            /* Add support for other commands here */
 
-					if (hitIndex < 0 || hitIndex >= static_cast<int>(hits.size()))
-					{
-						cout << "Invalid request" << endl;
-					}
-					else
-					{
-						ds.addToCart(username, hitIndex);
-					}
-				}
-				else
-				{
-					cout << "Invalid request" << endl;
-				}
-			}
-			else if (cmd == "VIEWCART")
-			{
-				std::string username;
-				if (ss >> username)
-				{
-					ds.viewCart(username);
-				}
-				else
-				{
-					cout << "Invalid username" << endl;
-				}
-			}
-			else if (cmd == "BUYCART")
-			{
-				std::string username;
 
-				if (ss >> username)
-				{
-					ds.buyCart(username);
-				}
-				else
-				{
-					cout << "Invalid username" << endl;
-				}
-			}
-			else {
-				cout << "Unknown command" << endl;
-			}
-		}
 
-	}
-	return 0;
+
+
+            else {
+                cout << "Unknown command" << endl;
+            }
+        }
+
+    }
+    return 0;
 }
 
 void displayProducts(std::vector<Product*>& hits) 
